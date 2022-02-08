@@ -35,6 +35,16 @@ module.exports = {
         }
     },
 
+    async deleteUser (req, res) {
+        try {
+            const delUser = await User.findOneAndRemove({ _id: req.params.userId})
+            res.json(delUser)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
+    },
+
     async addFriend(req, res) {
         try {
             const newFriend = await User.findOneAndUpdate(
