@@ -23,7 +23,18 @@ module.exports = {
             console.log(err)
             res.status(500).json(err)
         }
+    },
+
+    async getSingleUser(req, res) {
+        try {
+            const singleUser = await User.findOne({_id: req.params.userId})
+            res.json(singleUser)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
     }
+
 
 
 
