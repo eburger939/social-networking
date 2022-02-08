@@ -5,22 +5,25 @@ module.exports = {
 
     async getUsers(req, res) {
         try {
-        const findUser = await User.find()
-        res.status(200).json(findUser)
-        } 
-        
-        catch(err) {
-         console.log(err)
-         res.status(500).json(err)
-     
+            const findUser = await User.find()
+            res.status(200).json(findUser)
+        }
+
+        catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+
         }
     },
-
-    // getUsers(req, res) {
-    //     User.find()
-    //       .then((users) => res.json(users))
-    //       .catch((err) => res.status(500).json(err));
-    //   },
+    async createUser(req, res) {
+        try {
+            const newUser = await User.create(req.body)
+            res.json(newUser)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
+    }
 
 
 
