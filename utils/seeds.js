@@ -1,9 +1,10 @@
+const connection = require('../config/connection')
 const { User, Thoughts } = require('../models');
 
 const arr = [
     {
-        username: 'user1',
-        email: 'user1@gmail.com',
+        username: 'user7',
+        email: 'user7@gmail.com',
     },
     {
         username: 'user2',
@@ -18,4 +19,13 @@ const arr = [
         email: 'user4@gmail.com',
     },
 ]
-User.insertMany(arr);
+
+connection.on('error', (err) => err);
+connection.once('open', async () => {
+    console.log('connected')
+    await User.insertMany(arr);
+    process.exit(0)
+})
+
+
+
