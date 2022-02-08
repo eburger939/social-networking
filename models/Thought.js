@@ -7,6 +7,8 @@ const thoughtSchema = new Schema(
         thoughtText: {
             type: String,
             required: 'Username is required',
+            minlength: 1,
+            maxlength: 280,
         },
         createdAt: {
             type: Date,
@@ -16,9 +18,7 @@ const thoughtSchema = new Schema(
             type: String,
             required: 'Username is required'
         },
-        reactions: {
-
-        }
+        reactions: [reactionSchema]
     },
     {
         toJSON: {
