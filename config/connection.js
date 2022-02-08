@@ -1,12 +1,10 @@
-const mongoose = require('mongoose');
+const { connect, connection } = require('mongoose');
 
-
-mongoose.connect('mongodb://localhost:27017/social_networkDB', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
+connect('mongodb://localhost/socialNetwork', {
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true,
+  // useCreateIndex: true,
+  // useFindAndModify: false,
 });
 
-
-module.exports = mongoose.connection;
+module.exports = connection;
