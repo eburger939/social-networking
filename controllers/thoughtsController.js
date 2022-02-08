@@ -13,6 +13,15 @@ module.exports = {
 
         }
     },
+    async createThought(req, res) {
+        try {
+            const newThought = await Thought.create(req.body)
+            res.json(newThought)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
+    },
 
 
 
