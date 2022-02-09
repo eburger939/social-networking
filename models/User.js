@@ -26,6 +26,8 @@ const userSchema = new Schema(
             {
                 type: Schema.Types.ObjectId,
                 ref: 'thought',
+                //name of the model that we define 
+                //populate needs to speak on the field name (thoughts)
             }
         ],
         friends: [
