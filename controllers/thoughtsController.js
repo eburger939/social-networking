@@ -104,5 +104,19 @@ module.exports = {
         }
        },
 
+    async deleteReaction (req, res) {
+        try {
+            const deleteRx = await Thought.findOneAndUpdate(
+                {_id: req.params.thoughtId},
+                {$pull: {reactions: { reactionId: req.params.reactionId}}},
+                {new: true}
+            )
+            res.json( {message: 'reaction deleted'})
+        } catch(err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
+    }
+
 
 }
