@@ -38,8 +38,15 @@ module.exports = {
             res.status(500).json(err)
         }
     },
-
-
+    async deleteThought (req, res) {
+        try {
+            const delThought = await Thought.findOneAndRemove({ _id: req.params.thoughtId})
+            res.json(delThought)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
+    },
 
 
 
