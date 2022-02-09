@@ -42,12 +42,31 @@ module.exports = {
     async deleteThought (req, res) {
         try {
             const delThought = await Thought.findOneAndRemove({ _id: req.params.thoughtId})
-            const updateUser = await User.populate.findOneAndUpdate(
+            const updateUser = await User.findOneAndUpdate(
                 { thoughts: req.params.thoughtId },
                 { $pull: { thoughts: delThought.thoughtId } },
                 { new: true }
             )
             res.json(updateUser)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
+    },
+
+    async updateThought (req, res) {
+        try {
+            const updThought = await Thought.findOneAndUpdate(
+                {_id: req.params.thoughtId},
+                { $set: req.body},
+                {new: true}
+                )
+            const updUser = await User.findOneAndUpdate(
+                {username: req.body.username},
+                { $set: {thoughts: updThought}},
+                {new: true}
+                )
+                res.json(updUser)
         } catch (err) {
             console.log(err)
             res.status(500).json(err)
