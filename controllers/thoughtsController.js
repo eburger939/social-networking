@@ -16,12 +16,30 @@ module.exports = {
     async createThought(req, res) {
         try {
             const newThought = await Thought.create(req.body)
+            return User.findOneAndUpdate(
+                { username: req.body.username },
+                { $addToSet: {thoughts: thought._id}},
+                { new: true}
+                
+            );
             res.json(newThought)
         } catch (err) {
             console.log(err)
             res.status(500).json(err)
         }
     },
+
+    async getSingleThought(req, res) {
+        try {
+            const singleThought = await Thought.findOne({_id: req.params.thoughtId})
+            res.json(singleThought)
+        } catch (err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
+    },
+
+
 
 
 
