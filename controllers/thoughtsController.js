@@ -28,6 +28,27 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    createThought(req, res) {
+        Thought.create(req.body)
+          .then((thought) => {
+            return User.findOneAndUpdate(
+              { username: req.body.username },
+              { $addToSet: { thoughts: thought._id } },
+              { new: true }
+            );
+          })
+          .then((user) =>
+            !user
+              ? res.status(404).json({
+                  message: 'Application created, but found no user with that ID',
+                })
+              : res.json('Created the application 🎉')
+          )
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+          });
+      },
 
     async getSingleThought(req, res) {
         try {
@@ -48,6 +69,19 @@ module.exports = {
         }
     },
 
+    async addReaction(req, res) {
+        try {
+            const addRx = await Thought.findOneAndUpdate(
+                {_id: req.params.thoughtId},
+                {$addToSet: {reaction: req.body}},
+                {new: true}
+            )
+            res.json(addRx)
+        } catch(err) {
+            console.log(err)
+            res.status(500).json(err)
+        }
+       },
 
 
 }
