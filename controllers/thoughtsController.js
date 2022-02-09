@@ -94,7 +94,7 @@ module.exports = {
         try {
             const addRx = await Thought.findOneAndUpdate(
                 {_id: req.params.thoughtId},
-                {$addToSet: {reaction: req.body}},
+                {$addToSet: {reactions: req.body}},
                 {new: true}
             )
             res.json(addRx)
