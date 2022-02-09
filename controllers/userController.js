@@ -5,10 +5,10 @@ module.exports = {
 
     async getUsers(req, res) {
         try {
-            const findUser = await User.find()
+            const findUser = await User.find().populate('thoughts')
             res.status(200).json(findUser)
         }
-
+            
         catch (err) {
             console.log(err)
             res.status(500).json(err)
