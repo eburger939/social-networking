@@ -7,11 +7,11 @@
 
 
 ## Gif of deployed homework 
-
+![gif](socialmedia-api.gif)
 
 
 ## Link to screencastify
-
+* https://watch.screencastify.com/v/0Yk36FV89hLXpKDPpRid
 
 
 ## Link to repository

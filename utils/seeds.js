@@ -52,7 +52,7 @@ const thoughtArry = [
 connection.on('error', (err) => err);
 connection.once('open', async () => {
     console.log('connected')
-    // await User.insertMany(arr);
+    await User.insertMany(arr);
     await Thought.insertMany(thoughtArry)
     process.exit(0)
 })
